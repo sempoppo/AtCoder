@@ -70,6 +70,29 @@ int my_gcd(int x, int y){
 }
 
 int main(){
+    int n, m;
+    cin >> n >> m;
+    vector<int> a(n), b(m), c(m);
+    rep(i,n) cin >> a[i];
+    rep(i,m) cin >> b[i] >> c[i];
+    priority_queue<P> q;
+    rep(i,n) {
+        q.push(P(a[i], 1));
+    }
+    rep(i,m) {
+        q.push(P(c[i], b[i]));
+    }
+    ll ans = 0;
+    rep(i,n) {
+        auto p = q.top();
+        q.pop();
+        ans += p.first;
+        if(p.second > 1) {
+            p.second--;
+            q.push(p);
+        }
+    }
+    cout << ans << endl;
 	return 0;
 }
 
