@@ -72,7 +72,7 @@ int my_gcd(int x, int y){
 int main(){
     int n; cin >> n;
     vector<tuple<string, int, int>> a;
-    for(int i = 1; i < n; ++i) {
+    for(int i = 1; i <= n; ++i) {
         string s;
         int p;
         cin >> s >> p;
