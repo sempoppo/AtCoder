@@ -71,15 +71,27 @@ int my_gcd(int x, int y){
 
 int main(){
     int n; cin >> n;
-    pair<pair<string, int>, int> p[n+1];
-    rep(i,n) {
+    vector<tuple<string, int, int>> a;
+    for(int i = 1; i < n; ++i) {
         string s;
-        int t;
-        cin >> s >> t;
-        p[i] = make_pair(make_pair(s, -t), i);
+        int p;
+        cin >> s >> p;
+        p = -p;
+        a.push_back(tie(s, p, i));
     }
-    sort(p, p+n);
-    rep(i,n) cout<< p[i].second+1 << endl;
+    sort(a.begin(), a.end());
+    rep(i,n) {
+        cout << get<2>(a[i]) << endl;
+    }
+    // pair<pair<string, int>, int> p[n+1];
+    // rep(i,n) {
+    //     string s;
+    //     int t;
+    //     cin >> s >> t;
+    //     p[i] = make_pair(make_pair(s, -t), i);
+    // }
+    // sort(p, p+n);
+    // rep(i,n) cout<< p[i].second+1 << endl;
 	return 0;
 }
 
