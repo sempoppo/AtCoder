@@ -72,8 +72,36 @@ int my_gcd(int x, int y){
 
 int main(){
     int n; cin >> n;
-    if (n % 2 == 1) return 0;
+    vector<string> ans;
     
+    for(int bit = 0; bit < (1 << n); ++bit) {
+        string S;
+        int a = 0, b = 0;
+        rep(i,n) {
+            if(bit & (1 << i)) {
+                S.push_back(')');
+                a++;
+            } else {
+                S.push_back('(');
+                b++;
+            }
+        }
+        if(a != b) continue;
+        
+        int sum = 0;
+        bool ok = true;
+        rep(i,n) {
+            if(S[i] == '(') sum++;
+            else sum--;
+
+            if(sum < 0) ok = false;
+        }
+        if(ok) {
+            ans.push_back(S);
+        }
+    }
+    sort(ans.begin(), ans.end());
+    rep(i,ans.size()) cout << ans[i] << endl;
 	return 0;
 }
 
